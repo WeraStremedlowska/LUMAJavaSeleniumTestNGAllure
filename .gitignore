@@ -180,3 +180,4 @@ hs_err_pid*
 .allure/
 allure-results/
 allure-report/
+local.properties
