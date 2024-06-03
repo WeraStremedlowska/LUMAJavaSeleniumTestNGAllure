@@ -5,7 +5,7 @@ import org.testng.annotations.DataProvider;
 
 public class TestData {
     public static final String BASE_URL = "https://magento.softwaretestingboard.com";
-    public static final String BASE_URL_TITLE = "Home page";
+    public static final String BASE_URL_TITLE = "Home Page";
 
     public static final By WHATS_NEW_MENU = By.xpath("//nav//span[text()=\"What's New\"]");
     public static final String WHATS_NEW_MENU_URL = BASE_URL + "/what-is-new.html";
