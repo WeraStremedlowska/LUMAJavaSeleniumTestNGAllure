@@ -3,14 +3,18 @@ package com.lumatest.test;
 import com.lumatest.base.BaseTest;
 import com.lumatest.data.TestData;
 import io.qameta.allure.*;
+import io.qameta.allure.testng.Tag;
+import io.qameta.allure.testng.Tags;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class NavigationTest extends BaseTest {
+    @Tags({@Tag("smoke"), @Tag("navigation")})
     @Story("Navigation")
     @Severity(SeverityLevel.BLOCKER)
     @Description("Test navigation menu")
+    @Owner("tester: Wera")
     @Link(TestData.BASE_URL)
     @Test(dataProvider = "navigationMenuData", dataProviderClass = TestData.class)
     public void testNavigationMenu(String baseUrl, By navMenu, String expectedUrl, String expectedTitle) {
