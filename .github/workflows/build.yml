@@ -18,7 +18,13 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            browser: [chrome, firefox]
+          - os: windows-latest
+            browser: [chrome, firefox, edge]
+          - os: macos-latest
+            browser: [chrome, firefox, safari]
 
     steps:
       - name: Clone code from repo
@@ -44,7 +50,7 @@ jobs:
       - name: Test with Maven
         run: mvn test
         env:
-          BROWSER: ${{ matrix.os == 'macos-latest' && 'safari' || 'chrome' }}
+          BROWSER: ${{ matrix.browser }}
           CHROME_OPTIONS: --remote-allow-origins=*;--disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless=new;--window-size=1920,1080
           CI_RUN: true
 

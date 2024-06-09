@@ -15,6 +15,13 @@
             <class name="com.lumatest.test.TitleTest"/>
         </classes>
     </test>
+    <test verbose="10" preserve-order="true" name="EdgeTest">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="com.lumatest.test.NavigationTest"/>
+            <class name="com.lumatest.test.TitleTest"/>
+        </classes>
+    </test>
     <test verbose="10" preserve-order="true" name="SafariTest">
         <parameter name="browser" value="safari"/>
         <classes>
