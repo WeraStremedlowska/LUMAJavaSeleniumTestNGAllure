@@ -33,22 +33,11 @@ jobs:
           distribution: 'corretto'
           cache: maven
 
-      - name: Set up Selenium
-        uses: browser-actions/setup-selenium@latest
-        with:
-          selenium-version: 4.0.0
-          gecko-driver-version: latest
-          chrome-driver-version: latest
-
-      - name: Set up Firefox
-        uses: browser-actions/setup-firefox@latest
-        with:
-          firefox-version: latest
-
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: latest
+#      - name: Set up WebDriver Manager
+#        uses: bonigarcia/webdrivermanager-action@latest
+#        with:
+#          gecko-driver: latest
+#          chrome-driver: latest
 
       - name: Cache m2 dependencies
         uses: actions/cache@v4
