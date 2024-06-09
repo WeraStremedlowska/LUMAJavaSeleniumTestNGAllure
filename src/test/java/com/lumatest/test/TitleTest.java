@@ -5,7 +5,6 @@ import com.lumatest.data.TestData;
 import io.qameta.allure.*;
 import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -36,7 +35,7 @@ public class TitleTest extends BaseTest {
             String actualTitle = getDriver().getTitle();
 
             Allure.addAttachment("Actual URL", actualUrl);
-            Allure.addAttachment("Expected URL", "https://magento.softwaretestingboard.com");
+            Allure.addAttachment("Expected URL", TestData.BASE_URL);
             Allure.addAttachment("Actual Title", actualTitle);
             Allure.addAttachment("Expected Title", "LUMA");
 

@@ -1,13 +1,17 @@
 package com.lumatest.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Paths;
 import java.util.*;
 
 public final class BaseUtils {
@@ -55,21 +59,70 @@ public final class BaseUtils {
         initProperties();
 
         chromeOptions = new ChromeOptions();
+
         String options = properties.getProperty(PROP_CHROME_OPTIONS);
         if (options != null) {
             for (String argument : options.split(";")) {
                 chromeOptions.addArguments(argument);
             }
         }
-
-        WebDriverManager.chromedriver().setup();
     }
 
-    static WebDriver createDriver() {
+    private static WebDriver createChromeDriver() {
+        WebDriverManager.chromedriver().setup();
         ChromeDriver driver = new ChromeDriver(chromeOptions);
         driver.executeCdpCommand("Network.enable", Map.of());
         driver.executeCdpCommand("Network.setExtraHTTPHeaders", Map.of("headers", Map.of("accept-language", "en-US,en;q=0.9")));
         return driver;
     }
 
+    private static WebDriver createFirefoxDriver() {
+        WebDriverManager.firefoxdriver().setup();
+        return new FirefoxDriver();
+    }
+
+    private static WebDriver createEdgeDriver() {
+        WebDriverManager.edgedriver().setup();
+        return new EdgeDriver();
+    }
+
+    private static WebDriver createSafariDriver() {
+        System.setProperty("webdriver.safari.driver", "/usr/bin/safaridriver");
+        System.setProperty("webdriver.safari.verboseLogging", "true");
+        SafariOptions safariOptions = new SafariOptions();
+        safariOptions.setAutomaticInspection(true);
+        safariOptions.setAutomaticProfiling(true);
+        try {
+            System.out.println("Setting up SafariDriver");
+            WebDriverManager.getInstance(SafariDriver.class).setup();
+            System.out.println("Creating SafariDriver instance");
+            WebDriver driver = new SafariDriver(safariOptions);
+            System.out.println("SafariDriver instance created successfully");
+            return driver;
+        } catch (Exception e) {
+            System.err.println("Error creating SafariDriver: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+
+
+    public static WebDriver createDriver(String driver) {
+        switch (driver) {
+            case "chrome" -> {
+                return createChromeDriver();
+            }
+            case "firefox" -> {
+                return createFirefoxDriver();
+            }
+            case "edge" -> {
+                return createEdgeDriver();
+            }
+            case "safari" -> {
+                return createSafariDriver();
+            }
+            default -> throw new IllegalArgumentException("Unknown driver: " + driver);
+        }
+    }
 }

@@ -1,20 +1,21 @@
 package com.lumatest.base;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 public abstract class BaseTest {
     private WebDriver driver;
 
+    @Parameters("browser")
     @BeforeMethod
-    protected void setup() {
-        driver = BaseUtils.createDriver();
+    protected void setup( String browser) {
+        driver = BaseUtils.createDriver(browser);
+        Reporter.log("Browser:" + browser + " is opened");
     }
 
+    @Parameters("browser")
     @AfterMethod(alwaysRun = true)
     protected void teardown() {
         if (driver != null) {
