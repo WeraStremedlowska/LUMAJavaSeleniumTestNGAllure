@@ -19,6 +19,12 @@ jobs:
       max-parallel: 4
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        browser: [chrome, firefox, edge, safari]
+        exclude:
+          - os: ubuntu-latest
+            browser: safari
+          - os: windows-latest
+            browser: safari
 
     steps:
       - name: Clone code from repo
@@ -52,6 +58,7 @@ jobs:
         env:
           CHROME_OPTIONS: --remote-allow-origins=*;--disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless=new;--window-size=1920,1080
           CI_RUN: true
+          BROWSER: ${{ matrix.browser }}
 
       - name: Load test report history
         uses: actions/checkout@v4
@@ -63,7 +70,7 @@ jobs:
 
       - name: Build test report
         uses: simple-elf/allure-report-action@v1.7
-        if: ${{ matrix.os == 'ubuntu-latest' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.browser == 'chrome' }}
         with:
           gh_pages: gh-pages
           allure_history: allure-history
@@ -71,7 +78,7 @@ jobs:
 
       - name: Publish test report
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ matrix.os == 'ubuntu-latest' }}
+        if: ${{ matrix.os == 'ubuntu-latest' && matrix.browser == 'chrome' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
