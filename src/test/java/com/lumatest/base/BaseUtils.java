@@ -62,6 +62,7 @@ public final class BaseUtils {
         initProperties();
         setupChromeOptions();
         setupFirefoxOptions();
+        setupEdgeOptions();
         setupSafariOptions();
     }
 

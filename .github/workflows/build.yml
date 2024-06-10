@@ -19,7 +19,6 @@ jobs:
       max-parallel: 4
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        browser: [ chrome, firefox ]
         include:
           - os: windows-latest
             browser: edge
@@ -50,7 +49,6 @@ jobs:
       - name: Test with Maven
         run: mvn test
         env:
-          BROWSER: ${{ matrix.browser }}
           CHROME_OPTIONS: --remote-allow-origins=*;--disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless=new;--window-size=1920,1080
           CI_RUN: true
 

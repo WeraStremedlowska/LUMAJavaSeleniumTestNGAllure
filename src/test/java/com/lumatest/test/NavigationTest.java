@@ -18,6 +18,9 @@ public class NavigationTest extends BaseTest {
     @Link(TestData.BASE_URL)
     @Test(dataProvider = "navigationMenuData", dataProviderClass = TestData.class)
     public void testNavigationMenu(String baseUrl, By navMenu, String expectedUrl, String expectedTitle) {
+        if (getDriver() == null) {
+            Assert.fail("The driver is not initialized.");
+        }
         Allure.step("Open the browser");
         getDriver().get(baseUrl);
 
