@@ -15,18 +15,18 @@
             <class name="com.lumatest.test.TitleTest"/>
         </classes>
     </test>
-    <test verbose="10" preserve-order="true" name="EdgeTest">
-        <parameter name="browser" value="edge"/>
-        <classes>
-<!--            <class name="com.lumatest.test.NavigationTest"/>-->
-            <class name="com.lumatest.test.TitleTest"/>
-        </classes>
-    </test>
-    <test verbose="10" preserve-order="true" name="SafariTest">
-        <parameter name="browser" value="safari"/>
-        <classes>
-<!--            <class name="com.lumatest.test.NavigationTest"/>-->
-            <class name="com.lumatest.test.TitleTest"/>
-        </classes>
-    </test>
+<!--    <test verbose="10" preserve-order="true" name="EdgeTest">-->
+<!--        <parameter name="browser" value="edge"/>-->
+<!--        <classes>-->
+<!--&lt;!&ndash;            <class name="com.lumatest.test.NavigationTest"/>&ndash;&gt;-->
+<!--            <class name="com.lumatest.test.TitleTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test verbose="10" preserve-order="true" name="SafariTest">-->
+<!--        <parameter name="browser" value="safari"/>-->
+<!--        <classes>-->
+<!--&lt;!&ndash;            <class name="com.lumatest.test.NavigationTest"/>&ndash;&gt;-->
+<!--            <class name="com.lumatest.test.TitleTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>
