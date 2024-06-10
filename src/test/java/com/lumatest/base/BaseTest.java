@@ -1,4 +1,5 @@
 package com.lumatest.base;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
@@ -10,7 +11,7 @@ public abstract class BaseTest {
 
     @Parameters("browser")
     @BeforeMethod
-    protected void setup( String browser) {
+    protected void setup(String browser) {
         driver = BaseUtils.createDriver(browser);
         Reporter.log("Browser:" + browser + " is opened");
     }
