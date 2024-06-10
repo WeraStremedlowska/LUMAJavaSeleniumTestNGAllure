@@ -17,6 +17,9 @@ public class TitleTest extends BaseTest {
     @Link(TestData.BASE_URL)
     @Test
     public void testTitle() {
+        if (getDriver() == null) {
+            Assert.fail("The driver is not initialized.");
+        }
         Allure.step("Open the browser", () -> {
             getDriver().get(TestData.BASE_URL);
         });

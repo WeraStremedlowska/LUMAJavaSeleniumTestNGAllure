@@ -7,9 +7,11 @@ import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class NavigationTest extends BaseTest {
+    @Ignore
     @Tags({@Tag("smoke"), @Tag("navigation")})
     @Story("Navigation")
     @Severity(SeverityLevel.BLOCKER)

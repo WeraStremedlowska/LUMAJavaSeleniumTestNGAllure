@@ -17,9 +17,13 @@ public abstract class BaseTest {
 
     @Parameters("browser")
     @AfterMethod(alwaysRun = true)
-    protected void teardown() {
+    protected void teardown(String browser) {
         if (driver != null) {
-            driver.quit();
+            if (browser.equals("safari")) {
+                driver.close();
+            } else {
+                driver.quit();
+            }
             this.driver = null;
         }
     }
