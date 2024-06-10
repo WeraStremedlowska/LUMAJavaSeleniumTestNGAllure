@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Jun 10 18:23:03 GMT 2024","Mon Jun 10 18:23:04 GMT 2024","1007","CrossBrowser Test Suite","ChromeTest","com.lumatest.test.TitleTest","com.lumatest.test.TitleTest","testTitle","testTitle","Smoke test for the title"
