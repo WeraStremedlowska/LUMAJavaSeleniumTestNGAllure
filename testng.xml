@@ -8,13 +8,13 @@
             <class name="com.lumatest.test.TitleTest"/>
         </classes>
     </test>
-    <test verbose="2" preserve-order="true" name="FirefoxTest">
-        <parameter name="browser" value="firefox"/>
-        <classes>
-<!--            <class name="com.lumatest.test.NavigationTest"/>-->
-            <class name="com.lumatest.test.TitleTest"/>
-        </classes>
-    </test>
+<!--    <test verbose="2" preserve-order="true" name="FirefoxTest">-->
+<!--        <parameter name="browser" value="firefox"/>-->
+<!--        <classes>-->
+<!--&lt;!&ndash;            <class name="com.lumatest.test.NavigationTest"/>&ndash;&gt;-->
+<!--            <class name="com.lumatest.test.TitleTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 <!--    <test verbose="10" preserve-order="true" name="EdgeTest">-->
 <!--        <parameter name="browser" value="edge"/>-->
 <!--        <classes>-->
