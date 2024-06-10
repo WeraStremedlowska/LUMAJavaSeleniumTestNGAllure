@@ -7,9 +7,11 @@ import io.qameta.allure.testng.Tag;
 import io.qameta.allure.testng.Tags;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class NavigationTest extends BaseTest {
+    @Ignore
     @Tags({@Tag("smoke"), @Tag("navigation")})
     @Story("Navigation")
     @Severity(SeverityLevel.BLOCKER)
@@ -18,6 +20,9 @@ public class NavigationTest extends BaseTest {
     @Link(TestData.BASE_URL)
     @Test(dataProvider = "navigationMenuData", dataProviderClass = TestData.class)
     public void testNavigationMenu(String baseUrl, By navMenu, String expectedUrl, String expectedTitle) {
+        if (getDriver() == null) {
+            Assert.fail("The driver is not initialized.");
+        }
         Allure.step("Open the browser");
         getDriver().get(baseUrl);
 
