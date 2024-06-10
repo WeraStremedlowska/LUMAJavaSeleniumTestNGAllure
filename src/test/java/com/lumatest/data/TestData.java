@@ -31,6 +31,8 @@ public class TestData {
     public static final String SALE_MENU_URL = BASE_URL + "/sale.html";
     public static final String SALE_MENU_TITLE = "Sale";
 
+    public static final String DRIVEN_BACKPACK_TITLE = "Driven Backpack";
+
     @DataProvider(name = "navigationMenuData")
     public static Object[][] navigationMenuData() {
         return new Object[][]{

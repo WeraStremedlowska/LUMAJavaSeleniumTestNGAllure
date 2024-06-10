@@ -125,20 +125,9 @@ public final class BaseUtils {
     }
 
     public static WebDriver createDriver(String driver) {
-        String os = System.getProperty("os.name").toLowerCase();
-/*        if (driver.equals("safari") && !os.contains("mac")) {
-            System.out.println("Safari is only supported on macOS. Skipping test.");
-            return null;
-        }
-        if (driver.equals("edge") && !os.contains("win")) {
-            System.out.println("Edge is only supported on Windows. Skipping test.");
-            return null;
-        }*/
         return switch (driver) {
             case "chrome" -> createChromeDriver();
             case "firefox" -> createFirefoxDriver();
-            case "edge" -> createEdgeDriver();
-            case "safari" -> createSafariDriver();
             default -> throw new IllegalArgumentException("Unknown driver: " + driver);
         };
     }

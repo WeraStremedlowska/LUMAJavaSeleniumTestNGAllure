@@ -14,16 +14,12 @@ permissions:
 jobs:
   build:
     name: Build On
-    runs-on: ${{ matrix.os }}
     strategy:
       max-parallel: 4
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
-#        include:
-#          - os: windows-latest
-#            browser: edge
-#          - os: macos-latest
-#            browser: safari
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Clone code from repo
@@ -75,7 +71,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
-
+#
 #  check-java-code-style:
 #    name: Check Java code style
 #    runs-on: ubuntu-latest
