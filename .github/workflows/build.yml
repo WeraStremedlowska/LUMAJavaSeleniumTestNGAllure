@@ -43,6 +43,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Install Firefox
+        if: matrix.os == 'macos-latest'
+        run: |
+         brew install --cask firefox
+
       - name: Test with Maven
         run: mvn test
         env:
