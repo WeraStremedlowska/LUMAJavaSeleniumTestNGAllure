@@ -107,7 +107,7 @@ public final class BaseUtils {
     }
 
     private static WebDriver createFirefoxDriver() {
-        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.firefoxdriver().clearDriverCache().setup();
         return new FirefoxDriver(firefoxOptions);
     }
 
