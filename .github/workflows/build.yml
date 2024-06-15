@@ -70,12 +70,6 @@ jobs:
 
       - name: Test with Maven
         run: |
-          echo "Java Version:"
-          java -version
-          echo "Firefox Version:"
-          firefox --version
-          echo "GeckoDriver Version:"
-          geckodriver --version
           mvn test
         env:
           CHROME_OPTIONS: --remote-allow-origins=*;--disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless=new;--window-size=1920,1080
