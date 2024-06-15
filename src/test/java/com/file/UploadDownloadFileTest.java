@@ -1,6 +1,7 @@
 package com.file;
 
 import com.lumatest.base.BaseUtils;
+import com.lumatest.utils.DeleteFileUtils;
 import com.lumatest.utils.ReportUtils;
 import com.lumatest.utils.UnzipUtility;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -75,6 +76,12 @@ public class UploadDownloadFileTest {
         WebElement deleteButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button//span[text()='Delete']")));
 
         Assert.assertTrue(deleteButton.isDisplayed());
+
+        deleteButton.click();
+
+        Thread.sleep(2000);
+
+        DeleteFileUtils.deleteFile(downloadPath, ".jpg");
     }
 
     @Test
@@ -112,6 +119,9 @@ public class UploadDownloadFileTest {
         } else {
             Reporter.log("INFO: Driver is null.", true);
         }
+
+        DeleteFileUtils.deleteFile(downloadPath, ".zip");
+        DeleteFileUtils.deleteFile(downloadPath, ".exe");
     }
 
     public void waitForFileDownload(String downloadPath, String fileName) {
