@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="CrossBrowser Test Suite" parallel="methods" thread-count="2" data-provider-thread-count="2">
-    <test verbose="2" preserve-order="true" name="ChromeTest">
+<suite name="CrossBrowser" parallel="tests" thread-count="5" data-provider-thread-count="5">
+    <test name="ChromeTest" verbose="10" >
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.lumatest.test.TitleTest"/>
             <class name="com.lumatest.test.ProductPageTest"/>
         </classes>
     </test>
-    <test verbose="2" preserve-order="true" name="FirefoxTest">
+    <test name="FirefoxTest" verbose="10"  >
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="com.lumatest.test.TitleTest"/>
