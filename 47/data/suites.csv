@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sat Jun 15 09:26:08 GMT 2024","Sat Jun 15 09:26:10 GMT 2024","2064","CrossBrowser Test Suite","ChromeTest","com.lumatest.test.TitleTest","com.lumatest.test.TitleTest","testTitle","testTitle","Smoke test for the title"
+"passed","Sat Jun 15 09:26:08 GMT 2024","Sat Jun 15 09:26:12 GMT 2024","3884","CrossBrowser Test Suite","ChromeTest","com.lumatest.test.ProductPageTest","com.lumatest.test.ProductPageTest","testProduct","testProduct",""
+"passed","Sat Jun 15 09:26:21 GMT 2024","Sat Jun 15 09:26:24 GMT 2024","2317","CrossBrowser Test Suite","FirefoxTest","com.lumatest.test.TitleTest","com.lumatest.test.TitleTest","testTitle","testTitle","Smoke test for the title"
+"passed","Sat Jun 15 09:26:21 GMT 2024","Sat Jun 15 09:26:27 GMT 2024","5304","CrossBrowser Test Suite","FirefoxTest","com.lumatest.test.ProductPageTest","com.lumatest.test.ProductPageTest","testProduct","testProduct",""
