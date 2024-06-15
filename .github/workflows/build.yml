@@ -82,8 +82,9 @@ jobs:
           geckodriver --version
 
       - name: Test with Maven
+        shell: bash
         run: |
-          for i in 1 2 3; do mvn test && break || sleep 10; done
+           for i in 1 2 3; do mvn test && break || sleep 10; done
         env:
           CHROME_OPTIONS: --remote-allow-origins=*;--disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless=new;--window-size=1920,1080
           CI_RUN: true
