@@ -14,6 +14,8 @@ import org.openqa.selenium.safari.SafariOptions;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public final class BaseUtils {
@@ -74,6 +76,12 @@ public final class BaseUtils {
                 chromeOptions.addArguments(argument);
             }
         }
+        Map<String, Object> prefs = new HashMap<String, Object>();
+        prefs.put("download.default_directory", "/Users/wera/IdeaProjects/LUMAJavaSeleniumTestNGAllure/src/test/resources"); // change this to your desired path
+        prefs.put("download.prompt_for_download", false);
+        prefs.put("download.directory_upgrade", true);
+        prefs.put( "safebrowsing.enabled", true);
+        chromeOptions.setExperimentalOption("prefs", prefs);
     }
 
     private static void setupFirefoxOptions() {
