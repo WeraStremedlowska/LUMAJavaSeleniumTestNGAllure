@@ -44,6 +44,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Enable Debugging
+        if: matrix.os == 'macos-latest'
         run: |
           set -x
 
