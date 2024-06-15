@@ -43,6 +43,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Enable Debugging
+        run: |
+          set -x
+
+      - name: Enable Gatekeeper
+        if: matrix.os == 'macos-latest'
+        run: |
+          sudo spctl --master-enable
+
       - name: Install Firefox
         if: matrix.os == 'macos-latest'
         run: |
