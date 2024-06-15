@@ -82,9 +82,6 @@ public final class BaseUtils {
         firefoxOptions.addArguments("--disable-gpu");
         firefoxOptions.addArguments("--no-sandbox");
         firefoxOptions.addArguments("--disable-dev-shm-usage");
-        firefoxOptions.addArguments("--disable-web-security");
-        firefoxOptions.addArguments("--allow-running-insecure-content");
-        firefoxOptions.addArguments("--ignore-certificate-errors");
     }
 
     private static void setupEdgeOptions() {
@@ -128,8 +125,8 @@ public final class BaseUtils {
         return switch (driver) {
             case "chrome" -> createChromeDriver();
             case "firefox" -> createFirefoxDriver();
-            case "edge" -> createEdgeDriver();
-            case "safari" -> createSafariDriver();
+//            case "edge" -> createEdgeDriver();
+//            case "safari" -> createSafariDriver();
             default -> throw new IllegalArgumentException("Unknown driver: " + driver);
         };
     }
