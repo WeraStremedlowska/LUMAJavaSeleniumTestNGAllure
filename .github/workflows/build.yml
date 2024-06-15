@@ -53,6 +53,11 @@ jobs:
         run: |
           sudo spctl --master-enable
 
+      - name: Update /etc/hosts
+        if: matrix.os == 'macos-latest'
+        run: |
+          echo "127.0.0.1 localhost" | sudo tee -a /etc/hosts
+
       - name: Install Firefox
         if: matrix.os == 'macos-latest'
         run: |
