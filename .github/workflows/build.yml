@@ -63,7 +63,8 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: |
           echo "Installing GeckoDriver..."
-          curl -L -o geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/latest/download/geckodriver-v0.33.0-macos.tar.gz
+          GECKODRIVER_VERSION=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          curl -L -o geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-macos.tar.gz
           tar -xzf geckodriver.tar.gz -C /usr/local/bin
           rm geckodriver.tar.gz
           geckodriver --version
