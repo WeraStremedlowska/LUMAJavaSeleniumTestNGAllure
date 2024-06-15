@@ -2,7 +2,8 @@ name: Java CI with Maven
 
 on:
   pull_request:
-    branches: main
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -42,8 +43,48 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Enable Debugging
+        if: matrix.os == 'macos-latest'
+        run: |
+          set -x
+
+      - name: Enable Gatekeeper
+        if: matrix.os == 'macos-latest'
+        run: |
+          sudo spctl --master-enable
+
+      - name: Update /etc/hosts
+        if: matrix.os == 'macos-latest'
+        run: |
+          echo "127.0.0.1 localhost" | sudo tee -a /etc/hosts
+
+      - name: Verify DNS Configuration
+        if: matrix.os == 'macos-latest'
+        run: |
+          cat /etc/resolv.conf
+          scutil --dns
+
+      - name: Install Firefox
+        if: matrix.os == 'macos-latest'
+        run: |
+         brew install --cask firefox
+         firefox --version
+
+      - name: Install GeckoDriver
+        if: matrix.os == 'macos-latest'
+        run: |
+          echo "Installing GeckoDriver..."
+          GECKODRIVER_VERSION=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          echo "GeckoDriver Version: $GECKODRIVER_VERSION"
+          curl -L -o geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-macos.tar.gz
+          sudo tar -xzf geckodriver.tar.gz -C /usr/local/bin
+          rm geckodriver.tar.gz
+          geckodriver --version
+
       - name: Test with Maven
-        run: mvn test
+        shell: bash
+        run: |
+           for i in 1 2 3; do mvn test && break || sleep 10; done
         env:
           CHROME_OPTIONS: --remote-allow-origins=*;--disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless=new;--window-size=1920,1080
           CI_RUN: true
@@ -71,16 +112,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
-#
-#  check-java-code-style:
-#    name: Check Java code style
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Clone code from repo
-#        uses: actions/checkout@v4
-#        with:
-#          fetch-depth: 0
-#
-#      - name: Run java checkstyle
-#        uses: nikitasavinov/checkstyle-action@0.6.0

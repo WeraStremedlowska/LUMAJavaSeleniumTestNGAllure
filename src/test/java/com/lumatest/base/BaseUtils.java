@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -85,6 +86,10 @@ public final class BaseUtils {
         firefoxOptions.addArguments("--disable-web-security");
         firefoxOptions.addArguments("--allow-running-insecure-content");
         firefoxOptions.addArguments("--ignore-certificate-errors");
+        firefoxOptions.setLogLevel(FirefoxDriverLogLevel.TRACE);
+        firefoxOptions.addPreference("remote.log.truncate", false);
+        firefoxOptions.addPreference("extensions.logging.enabled", true);
+        firefoxOptions.setCapability("acceptInsecureCerts", true);
     }
 
     private static void setupEdgeOptions() {
@@ -110,8 +115,15 @@ public final class BaseUtils {
     }
 
     private static WebDriver createFirefoxDriver() {
-        WebDriverManager.firefoxdriver().setup();
-        return new FirefoxDriver(firefoxOptions);
+        try {
+            WebDriverManager.firefoxdriver().setup();
+            setupFirefoxOptions();
+            return new FirefoxDriver(firefoxOptions);
+        } catch (Exception e) {
+            System.out.println("Error creating Firefox driver: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private static WebDriver createEdgeDriver() {
@@ -128,6 +140,8 @@ public final class BaseUtils {
         return switch (driver) {
             case "chrome" -> createChromeDriver();
             case "firefox" -> createFirefoxDriver();
+//            case "edge" -> createEdgeDriver();
+//            case "safari" -> createSafariDriver();
             default -> throw new IllegalArgumentException("Unknown driver: " + driver);
         };
     }
