@@ -90,6 +90,7 @@ public final class BaseUtils {
         firefoxOptions.addPreference("remote.log.truncate", false);
         firefoxOptions.addPreference("extensions.logging.enabled", true);
         firefoxOptions.setCapability("acceptInsecureCerts", true);
+        firefoxOptions.setBinary("/Applications/Firefox.app/Contents/MacOS/firefox");
     }
 
     private static void setupEdgeOptions() {
@@ -115,9 +116,15 @@ public final class BaseUtils {
     }
 
     private static WebDriver createFirefoxDriver() {
-        WebDriverManager.firefoxdriver().setup();
-        setupFirefoxOptions();
-        return new FirefoxDriver(firefoxOptions);
+        try {
+            WebDriverManager.firefoxdriver().setup();
+            setupFirefoxOptions();
+            return new FirefoxDriver(firefoxOptions);
+        } catch (Exception e) {
+            System.out.println("Error creating Firefox driver: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private static WebDriver createEdgeDriver() {
